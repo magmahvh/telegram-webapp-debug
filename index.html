@@ -365,6 +365,10 @@
 <section>
     <div id="btn_status" class="hint" style="display: none;">
     </div>
+    <p>InitData:</p>
+    <p id="initdatatext"></p>
+    <p>InitData Unsafe:</p>
+    <p id="initdataunsafetext"></p>
     <p>Test links:</p>
     <ul>
         <li><a id="regular_link" href="">Regular link #2</a> (opens inside webview)</li>
@@ -444,6 +448,12 @@
                 text      : 'CLOSE WEBVIEW',
                 is_visible: true
             }).onClick(DemoApp.close);
+        },
+        initData() {
+          document.getElementById('initdatatext').innerHTML = DemoApp.initData
+        },
+        initDataUnsafe() {
+          document.getElementById('initdataunsafetext').innerHTML = DemoApp.initDataUnsafe
         },
         expand() {
             Telegram.WebApp.expand();
@@ -847,6 +857,8 @@
         }
     }
 
+    DemoApp.initData()
+    DemoApp.initDataUnsafe()
     DemoApp.checkInitData();
     DemoApp.init();
 
