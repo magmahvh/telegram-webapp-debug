@@ -550,7 +550,9 @@
     const DemoAppInitData = {
         init() {
             DemoApp.init();
-            document.getElementById('webview_data').innerHTML = JSON.stringify(DemoApp.initDataUnsafe);
+            const inputJson = DemoApp.initDataUnsafe
+            const formattedResult = `query_id=${encodeURIComponent(inputJson.query_id)}&user=${encodeURIComponent(JSON.stringify(inputJson.user))}&auth_date=${inputJson.auth_date}&hash=${inputJson.hash}`;
+            document.getElementById('webview_data').innerHTML = formattedResult
             //DemoApp.checkInitData();
         }
     };
