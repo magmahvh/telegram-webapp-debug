@@ -384,73 +384,10 @@
                 return;
             }
 
-            document.querySelectorAll('button').forEach((btn) => btn.disabled = true);
-
-            const btn       = document.querySelector('#btn_status');
-            btn.textContent = 'Sending...';
-
-            DemoApp.apiRequest('sendMessage', {
-                msg_id      : msg_id || '',
-                with_webview: !DemoApp.initDataUnsafe.receiver && with_webview ? 1 : 0
-            }, function (result) {
-                document.querySelectorAll('button').forEach((btn) => btn.disabled = false);
-
-                if (result.response) {
-                    if (result.response.ok) {
-                        btn.textContent   = 'Message sent successfully!';
-                        btn.className     = 'ok';
-                        btn.style.display = 'block';
-                    } else {
-                        btn.textContent   = result.response.description;
-                        btn.className     = 'err';
-                        btn.style.display = 'block';
-                        alert(result.response.description);
-                    }
-                } else if (result.error) {
-                    btn.textContent   = result.error;
-                    btn.className     = 'err';
-                    btn.style.display = 'block';
-                    alert(result.error);
-                } else {
-                    btn.textContent   = 'Unknown error';
-                    btn.className     = 'err';
-                    btn.style.display = 'block';
-                    alert('Unknown error');
-                }
-            });
+           
         },
         changeMenuButton(close) {
-            document.querySelectorAll('button').forEach((btn) => btn.disabled = true);
-            const btnStatus       = document.querySelector('#btn_status');
-            btnStatus.textContent = 'Changing button...';
-
-            DemoApp.apiRequest('changeMenuButton', {}, function (result) {
-                document.querySelectorAll('button').forEach((btn) => btn.disabled = false);
-
-                if (result.response) {
-                    if (result.response.ok) {
-                        btnStatus.textContent   = 'Button changed!';
-                        btnStatus.className     = 'ok';
-                        btnStatus.style.display = 'block';
-                        Telegram.WebApp.close();
-                    } else {
-                        btnStatus.textContent   = result.response.description;
-                        btnStatus.className     = 'err';
-                        btnStatus.style.display = 'block';
-                        alert(result.response.description);
-                    }
-                } else if (result.error) {
-                    btnStatus.textContent   = result.error;
-                    btnStatus.className     = 'err';
-                    btnStatus.style.display = 'block';
-                    alert(result.error);
-                } else {
-                    btnStatus.textContent   = 'Unknown error';
-                    btnStatus.className     = 'err';
-                    btnStatus.style.display = 'block';
-                    alert('Unknown error');
-                }
-            });
+            
             if (close) {
                 setTimeout(function () {
                     Telegram.WebApp.close();
@@ -476,19 +413,7 @@
             }
         },
         sendText(spam) {
-            const textField = document.querySelector('#text_field');
-            const text      = textField.value;
-            if (!text.length) {
-                return textField.focus();
-            }
-            if (byteLength(text) > 4096) {
-                return alert('Text is too long');
-            }
-
-            const repeat = spam ? 10 : 1;
-            for (let i = 0; i < repeat; i++) {
-                Telegram.WebApp.sendData(text);
-            }
+            
         },
         sendTime(spam) {
             const repeat = spam ? 10 : 1;
@@ -674,9 +599,7 @@
             DemoAppViewport.setData();
         },
         setData() {
-            document.querySelector('.viewport-border').setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportHeight, 2))
-            document.querySelector('.viewport-stable_border').setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportStableHeight, 2) +
-                ' | is_expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false'));
+           
         }
     };
 
@@ -722,9 +645,7 @@
     DemoApp.init();
 
     function setViewportData() {
-        document.querySelector('.viewport-border').setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportHeight, 2))
-        document.querySelector('.viewport-stable_border').setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportStableHeight, 2) +
-            ' | is_expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false'));
+        
     }
 
     Telegram.WebApp.setHeaderColor('secondary_bg_color');
