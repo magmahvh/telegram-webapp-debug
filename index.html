@@ -568,8 +568,8 @@
     const DemoAppInitData = {
         init() {
             DemoApp.init();
-            document.getElementById('webview_data').innerHTML = DemoApp.initDataUnsafe;
-            DemoApp.checkInitData();
+            document.getElementById('webview_data').innerHTML = JSON.stringify(DemoApp.initDataUnsafe);
+            //DemoApp.checkInitData();
         }
     };
 
